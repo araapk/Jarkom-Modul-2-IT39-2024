@@ -90,21 +90,64 @@ iface eth0 inet static
 	gateway 192.168.0.1
 ```
 
+Kotalingga
+```
+auto eth0
+iface eth0 inet static
+	address 192.168.0.2
+	netmask 255.255.255.0
+	gateway 192.168.0.1
+```
+
+Srikandi
+```
+auto eth0
+iface eth0 inet static
+	address 192.168.0.2
+	netmask 255.255.255.0
+	gateway 192.168.0.1
+```
+
+Solok
+```
+auto eth0
+iface eth0 inet static
+	address 192.168.0.2
+	netmask 255.255.255.0
+	gateway 192.168.0.1
+```
+
+Samaratungga
+```
+auto eth0
+iface eth0 inet static
+	address 192.168.0.2
+	netmask 255.255.255.0
+	gateway 192.168.0.1
+```
+
+GrahamBell
+```
+auto eth0
+iface eth0 inet static
+	address 192.168.0.2
+	netmask 255.255.255.0
+	gateway 192.168.0.1
+```
+
+Mulawarman
+```
+auto eth0
+iface eth0 inet static
+	address 192.168.0.2
+	netmask 255.255.255.0
+	gateway 192.168.0.1
+```
 
 
 ### Soal 2
 Karena para pasukan membutuhkan koordinasi untuk melancarkan serangannya, maka buatlah sebuah domain yang mengarah ke **Solok** dengan alamat **sudarsana.xxxx.com** dengan alias **www.sudarsana.xxxx.com**, dimana xxxx merupakan kode kelompok. Contoh: **sudarsana.it01.com.**
 
 ## Set Up DNS pada DNS Master (Sriwijaya)
-a. Instlasi dependencies yang diperlukan
-```
-apt-get update
-apt-get install bind9
-```
+a. Instalasi dependencies yang diperlukan
 
-b. Menjalankan service dari bind9
-```
-service bind9 start
-```
-
-c. Menambahkan line pada file /etc/bind/named.conf.local
