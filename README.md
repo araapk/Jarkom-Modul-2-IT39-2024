@@ -31,3 +31,61 @@ Sebuah kerajaan besar di Indonesia sedang mengalami pertempuran dengan penjajah.
 ## Soal 1
 Untuk mempersiapkan peperangan World War MMXXIV (Iya sebanyak itu), **Sriwijaya** membuat dua kotanya menjadi web server yaitu **Tanjungkulai**, dan **Bedahulu**, serta **Sriwijaya** sendiri akan menjadi DNS Master. Kemudian karena merasa terdesak, **Majapahit** memberikan bantuan dan menjadikan kerajaannya (**Majapahit**) menjadi **DNS Slave**.
 ![Screenshot 2024-10-02 003021](https://github.com/user-attachments/assets/97f1801f-dcd0-45be-ad3d-e8b4991522e0)
+
+## Network Configuration
+Nusantara (Router)
+```
+auto eth0
+iface eth0 inet static
+
+auto eth1
+iface eth1 inet static
+	address 192.168.1.2
+	netmask 255.255.255.0
+
+auto eth2
+iface eth2 inet static
+	address 192.168.2.2
+	netmask 255.255.255.0
+
+auto eth3
+iface eth3 inet static
+	address 192.168.3.2
+	netmask 255.255.255.0
+```
+
+Sriwijaya (DNS Master)
+```
+auto eth0
+iface eth0 inet static
+	address 192.168.0.2
+	netmask 255.255.255.0
+	gateway 192.168.0.1
+```
+
+Tanjungkulai (Web Server)
+```
+auto eth0
+iface eth0 inet static
+	address 192.168.0.2
+	netmask 255.255.255.0
+	gateway 192.168.0.1
+```
+
+Bedahulu (Web Server)
+```
+auto eth0
+iface eth0 inet static
+	address 192.168.0.2
+	netmask 255.255.255.0
+	gateway 192.168.0.1
+```
+
+Majapahit (DNS Slave)
+```
+auto eth0
+iface eth0 inet static
+	address 192.168.0.2
+	netmask 255.255.255.0
+	gateway 192.168.0.1
+```
