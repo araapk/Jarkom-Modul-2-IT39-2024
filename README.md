@@ -165,6 +165,3 @@ Untuk mempersiapkan peperangan World War MMXXIV (Iya sebanyak itu), **Sriwijaya*
 ## Soal 2
 Karena para pasukan membutuhkan koordinasi untuk melancarkan serangannya, maka buatlah sebuah domain yang mengarah ke **Solok** dengan alamat **sudarsana.xxxx.com** dengan alias **www.sudarsana.xxxx.com**, dimana xxxx merupakan kode kelompok. Contoh: **sudarsana.it01.com.**
 
-## Set Up DNS pada DNS Master (Sriwijaya)
-a. Instalasi dependencies yang diperlukan
-
