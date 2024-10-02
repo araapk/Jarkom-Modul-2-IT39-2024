@@ -28,11 +28,10 @@
 
 -----
 Sebuah kerajaan besar di Indonesia sedang mengalami pertempuran dengan penjajah. Kerajaan tersebut adalah **Sriwijaya**. Karena merasa terdesak **Sriwijaya** meminta bantuan pada **Majapahit** untuk mempertahankan wilayahnya. Pertempuran besar tersebut berada di **Nusantara**. Untuk topologi (3)
-## Soal 1
-Untuk mempersiapkan peperangan World War MMXXIV (Iya sebanyak itu), **Sriwijaya** membuat dua kotanya menjadi web server yaitu **Tanjungkulai**, dan **Bedahulu**, serta **Sriwijaya** sendiri akan menjadi DNS Master. Kemudian karena merasa terdesak, **Majapahit** memberikan bantuan dan menjadikan kerajaannya (**Majapahit**) menjadi **DNS Slave**.
+## Topologi
 ![Screenshot 2024-10-02 003021](https://github.com/user-attachments/assets/97f1801f-dcd0-45be-ad3d-e8b4991522e0)
 
-## Network Configuration
+### Network Configuration
 Nusantara (Router)
 ```
 auto eth0
@@ -40,110 +39,128 @@ iface eth0 inet static
 
 auto eth1
 iface eth1 inet static
-	address 192.168.1.2
+	address 192.236.1.1
 	netmask 255.255.255.0
 
 auto eth2
 iface eth2 inet static
-	address 192.168.2.2
-	netmask 255.255.255.0
-
-auto eth3
-iface eth3 inet static
-	address 192.168.3.2
+	address 192.236.2.1
 	netmask 255.255.255.0
 ```
 
-Sriwijaya (DNS Master)
+Samaratungga (Client)
 ```
 auto eth0
 iface eth0 inet static
-	address 192.168.0.2
+	address 192.236.1.2
 	netmask 255.255.255.0
-	gateway 192.168.0.1
+	gateway 192.236.1.1
 ```
 
-Tanjungkulai (Web Server)
+GrahamBell (Client)
 ```
 auto eth0
 iface eth0 inet static
-	address 192.168.0.2
+	address 192.236.1.3
 	netmask 255.255.255.0
-	gateway 192.168.0.1
+	gateway 192.236.1.1
 ```
 
-Bedahulu (Web Server)
+Mulawarman (Client)
 ```
 auto eth0
 iface eth0 inet static
-	address 192.168.0.2
+	address 192.236.1.4
 	netmask 255.255.255.0
-	gateway 192.168.0.1
+	gateway 192.236.1.1
 ```
 
 Majapahit (DNS Slave)
 ```
 auto eth0
 iface eth0 inet static
-	address 192.168.0.2
+	address 192.236.1.5
 	netmask 255.255.255.0
-	gateway 192.168.0.1
+	gateway 192.236.1.1
 ```
 
-Kotalingga
+Bedahulu (Web Server)
 ```
 auto eth0
 iface eth0 inet static
-	address 192.168.0.2
+	address 192.236.2.2
 	netmask 255.255.255.0
-	gateway 192.168.0.1
+	gateway 192.236.2.1
 ```
 
-Srikandi
+Tanjungkulai (Web Server)
 ```
 auto eth0
 iface eth0 inet static
-	address 192.168.0.2
+	address 192.236.2.3
 	netmask 255.255.255.0
-	gateway 192.168.0.1
+	gateway 192.236.2.1
 ```
 
-Solok
+Sriwijaya (DNS Master)
 ```
 auto eth0
 iface eth0 inet static
-	address 192.168.0.2
+	address 192.236.2.4
 	netmask 255.255.255.0
-	gateway 192.168.0.1
+	gateway 192.236.2.1
 ```
 
-Samaratungga
+Srikandi (Client)
 ```
 auto eth0
 iface eth0 inet static
-	address 192.168.0.2
+	address 192.236.2.5
 	netmask 255.255.255.0
-	gateway 192.168.0.1
+	gateway 192.236.2.1
 ```
 
-GrahamBell
+Solok (Load Balancer)
 ```
 auto eth0
 iface eth0 inet static
-	address 192.168.0.2
+	address 192.236.2.6
 	netmask 255.255.255.0
-	gateway 192.168.0.1
+	gateway 192.236.2.1
 ```
 
-Mulawarman
+Kotalingga (Web Server)
 ```
 auto eth0
 iface eth0 inet static
-	address 192.168.0.2
+	address 192.236.2.7
 	netmask 255.255.255.0
-	gateway 192.168.0.1
+	gateway 192.236.2.1
 ```
 
+
+### Set .bashrc
+Nusantara (Router)
+```
+iptable -t nat -A POSTROUTING -o eth0 -j MASQUERADE -s 192.236.0.0/16
+```
+
+Sriwijaya (DNS Master)
+```
+apt-get update
+apt-get install bind9 -y
+```
+
+Majapahit (DNS Slave)
+```
+apt-get update
+apt-get install bind9 -y
+```
+
+
+
+## Soal 1
+Untuk mempersiapkan peperangan World War MMXXIV (Iya sebanyak itu), **Sriwijaya** membuat dua kotanya menjadi web server yaitu **Tanjungkulai**, dan **Bedahulu**, serta **Sriwijaya** sendiri akan menjadi DNS Master. Kemudian karena merasa terdesak, **Majapahit** memberikan bantuan dan menjadikan kerajaannya (**Majapahit**) menjadi **DNS Slave**.
 
 ## Soal 2
 Karena para pasukan membutuhkan koordinasi untuk melancarkan serangannya, maka buatlah sebuah domain yang mengarah ke **Solok** dengan alamat **sudarsana.xxxx.com** dengan alias **www.sudarsana.xxxx.com**, dimana xxxx merupakan kode kelompok. Contoh: **sudarsana.it01.com.**
