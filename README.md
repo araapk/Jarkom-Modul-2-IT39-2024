@@ -35,7 +35,8 @@ Sebuah kerajaan besar di Indonesia sedang mengalami pertempuran dengan penjajah.
 Nusantara (Router)
 ```
 auto eth0
-iface eth0 inet static
+iface eth0 inet dhcp
+up iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE -s 192.236.0.0/
 
 auto eth1
 iface eth1 inet static
