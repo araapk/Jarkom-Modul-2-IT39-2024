@@ -56,6 +56,8 @@ iface eth0 inet static
 	address 192.236.1.2
 	netmask 255.255.255.0
 	gateway 192.236.1.1
+	up echo nameserver 192.236.2.4 > /etc/resolv.conf
+        up echo nameserver 192.236.1.5 >> /etc/resolv.conf
 ```
 
 GrahamBell (Client)
@@ -65,6 +67,8 @@ iface eth0 inet static
 	address 192.236.1.3
 	netmask 255.255.255.0
 	gateway 192.236.1.1
+	up echo nameserver 192.236.2.4 > /etc/resolv.conf
+        up echo nameserver 192.236.1.5 >> /etc/resolv.conf
 ```
 
 Mulawarman (Client)
@@ -74,6 +78,8 @@ iface eth0 inet static
 	address 192.236.1.4
 	netmask 255.255.255.0
 	gateway 192.236.1.1
+	up echo nameserver 192.236.2.4 > /etc/resolv.conf
+        up echo nameserver 192.236.1.5 >> /etc/resolv.conf
 ```
 
 Majapahit (DNS Slave)
@@ -83,6 +89,7 @@ iface eth0 inet static
 	address 192.236.1.5
 	netmask 255.255.255.0
 	gateway 192.236.1.1
+	up echo nameserver 192.168.122.1 > /etc/resolv.conf
 ```
 
 Bedahulu (Web Server)
@@ -92,6 +99,7 @@ iface eth0 inet static
 	address 192.236.2.2
 	netmask 255.255.255.0
 	gateway 192.236.2.1
+	up echo nameserver 192.168.122.1 > /etc/resolv.conf
 ```
 
 Tanjungkulai (Web Server)
@@ -101,6 +109,7 @@ iface eth0 inet static
 	address 192.236.2.3
 	netmask 255.255.255.0
 	gateway 192.236.2.1
+	up echo nameserver 192.168.122.1 > /etc/resolv.conf
 ```
 
 Sriwijaya (DNS Master)
@@ -110,6 +119,7 @@ iface eth0 inet static
 	address 192.236.2.4
 	netmask 255.255.255.0
 	gateway 192.236.2.1
+	up echo nameserver 192.168.122.1 > /etc/resolv.conf
 ```
 
 Srikandi (Client)
@@ -119,6 +129,8 @@ iface eth0 inet static
 	address 192.236.2.5
 	netmask 255.255.255.0
 	gateway 192.236.2.1
+	up echo nameserver 192.236.2.4 > /etc/resolv.conf
+        up echo nameserver 192.236.1.5 >> /etc/resolv.conf
 ```
 
 Solok (Load Balancer)
@@ -128,6 +140,7 @@ iface eth0 inet static
 	address 192.236.2.6
 	netmask 255.255.255.0
 	gateway 192.236.2.1
+	up echo nameserver 192.168.122.1 > /etc/resolv.conf
 ```
 
 Kotalingga (Web Server)
@@ -137,25 +150,7 @@ iface eth0 inet static
 	address 192.236.2.7
 	netmask 255.255.255.0
 	gateway 192.236.2.1
-```
-
-
-### Set .bashrc
-Nusantara (Router)
-```
-iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE -s 192.236.0.0/16
-```
-
-Sriwijaya (DNS Master)
-```
-apt-get update
-apt-get install bind9 -y
-```
-
-Majapahit (DNS Slave)
-```
-apt-get update
-apt-get install bind9 -y
+	up echo nameserver 192.168.122.1 > /etc/resolv.conf
 ```
 
 
