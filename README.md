@@ -162,20 +162,138 @@ apt-get install bind9 -y
 ## Soal 1
 Untuk mempersiapkan peperangan World War MMXXIV (Iya sebanyak itu), **Sriwijaya** membuat dua kotanya menjadi web server yaitu **Tanjungkulai**, dan **Bedahulu**, serta **Sriwijaya** sendiri akan menjadi DNS Master. Kemudian karena merasa terdesak, **Majapahit** memberikan bantuan dan menjadikan kerajaannya (**Majapahit**) menjadi **DNS Slave**.
 
+### Nusantara
+```
+up iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE -s 192.236.0.0/16=
+```
+
+### Tanjungkulai 
+```
+up echo nameserver 192.236.2.7 > /etc/resolv.conf
+up echo nameserver 192.236.1.2 >> /etc/resolv.conf
+up echo nameserver 192.168.122.1 >> /etc/resolv.conf
+```
+### Bedahulu
+```
+up echo nameserver 192.236.2.7 > /etc/resolv.conf
+up echo nameserver 192.236.1.2 >> /etc/resolv.conf
+up echo nameserver 192.168.122.1 >> /etc/resolv.conf
+```
+### Sriwijaya
+```
+up echo nameserver 192.236.2.7 > /etc/resolv.conf
+up echo nameserver 192.168.122.1 >> /etc/resolv.conf
+```
+### Majapahit 
+```
+up echo nameserver 192.168.122.1 >> /etc/resolv.conf
+```
+### Kotalingga
+```
+up echo nameserver 192.236.2.7 > /etc/resolv.conf
+up echo nameserver 192.236.1.2 >> /etc/resolv.conf
+up echo nameserver 192.168.122.1 >> /etc/resolv.conf
+```
+### Solok
+```
+up echo nameserver 192.236.2.7 > /etc/resolv.conf
+up echo nameserver 192.236.1.2 >> /etc/resolv.conf
+up echo nameserver 192.168.122.1 >> /etc/resolv.conf
+```
+
+
 ## Soal 2
 Karena para pasukan membutuhkan koordinasi untuk melancarkan serangannya, maka buatlah sebuah domain yang mengarah ke **Solok** dengan alamat **sudarsana.xxxx.com** dengan alias **www.sudarsana.xxxx.com**, dimana xxxx merupakan kode kelompok. Contoh: **sudarsana.it01.com.**
+
+Masuk Ke Web Console Sriwijaya 
+
+1. `apt install bind9 dnsutils -y`
+
+2. `cd /etc/bind`
+
+3. Lakukan edit pada named server
+
+4. `nano named.conf.local`
+
+5. `mkdir /etc/bind/it39`
+
+6. `cp ../db.local sudarsana.it39.com`
+
+7. `nano sudarsana.it39.com`
+
+8. `service bind9 restart`
+
+9. `ping sudarsana.it39.com` 
 
 ## Soal 3
 Para pasukan juga perlu mengetahui mana titik yang akan diserang, sehingga dibutuhkan domain lain yaitu **pasopati.xxxx.com** dengan alias **www.pasopati.xxxx.com** yang mengarah ke **Kotalingga**.
 
+Masuk Ke Web Console Sriwijaya 
+
+2. `cd /etc/bind`
+
+3. Lakukan edit pada named server
+
+4. `nano named.conf.local`
+
+5. `cd it39`
+
+6. `cp pasopati.it39.com`
+
+7. `nano pasopati.it39.com`
+
+8. `service bind9 restart`
+
+9. `ping pasopati.it39.com` 
+
 ## Soal 4
 Markas pusat meminta dibuatnya domain khusus untuk menaruh informasi persenjataan dan suplai yang tersebar. Informasi dan suplai meme terbaru tersebut mengarah ke Tanjungkulai dan domain yang ingin digunakan adalah **rujapala.xxxx.com** dengan alias **www.rujapala.xxxx.com.**
+
+### Lakukan Step yang sama dengan No 2 & 3 
 
 ## Soal 5 
 Pastikan domain-domain tersebut dapat diakses oleh **seluruh komputer (client)** yang berada di **Nusantara**.
 
+1. Masuk ke Web Console Client(laptop(bebas))
+
+2. Jalanin Command di Console 
+
+```
+echo nameserver 192.236.2.7 >> /etc/resolv.conf
+```
+```
+echo nameserver 192.236.1.2 >> /etc/resolv.conf
+```
+
 ## Soal 6
 Beberapa daerah memiliki keterbatasan yang menyebabkan hanya dapat mengakses domain secara langsung melalui **alamat IP** domain tersebut. Karena daerah tersebut tidak diketahui secara spesifik, pastikan semua komputer (client) dapat mengakses domain **pasopati.xxxx.com** melalui **alamat IP Kotalingga** (Notes: menggunakan pointer record).
+
+1. Masukke Web Console Sriwijaya 
+
+2. cd /etc/bind
+
+3. `nano named.conf.local` & tambahkan zone baru: 
+```
+zone "192.236.2.in-addr.arpa" {
+  type master;
+  file "/etc/bind/it39/192.236.2.in-addr.arpa";
+};
+```
+
+4. `cd it39`
+
+5. `cp pasopati.it39.com 192.236.2.in-addr.arpa`
+
+6. `service bind9 restart`
+
+7. Masuk ke Web Console Client (laptop(bebas))
+
+8. `apt install dnsutils -y`
+
+9. Pastiin udah ada nameserver si DNS di /etc/resolv.conf
+
+10. `host -t	PTR 192.236.2.4`
+
 
 ## Soal 7
 Akhir-akhir ini seringkali terjadi **serangan brainrot** ke DNS Server Utama, sebagai tindakan antisipasi kamu diperintahkan untuk membuat **DNS Slave di Majapahit** untuk semua domain yang sudah dibuat sebelumnya yang mengarah ke **Sriwijaya.**
