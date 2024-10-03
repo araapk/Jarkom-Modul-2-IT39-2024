@@ -29,7 +29,7 @@
 -----
 Sebuah kerajaan besar di Indonesia sedang mengalami pertempuran dengan penjajah. Kerajaan tersebut adalah **Sriwijaya**. Karena merasa terdesak **Sriwijaya** meminta bantuan pada **Majapahit** untuk mempertahankan wilayahnya. Pertempuran besar tersebut berada di **Nusantara**. Untuk topologi (3)
 ## Topologi
-![Screenshot 2024-10-02 003021](https://github.com/user-attachments/assets/97f1801f-dcd0-45be-ad3d-e8b4991522e0)
+![assets](assets/jarkom1.png)
 
 ### Network Configuration
 Nusantara (Router)
@@ -211,11 +211,15 @@ Masuk Ke Web Console Sriwijaya
 
 4. `nano named.conf.local`
 
+![assets](assets/Screenshot_68.png)
+
 5. `mkdir /etc/bind/it39`
 
 6. `cp ../db.local sudarsana.it39.com`
 
 7. `nano sudarsana.it39.com`
+
+![assets](assets/Screenshot_65.png)
 
 8. `service bind9 restart`
 
@@ -231,12 +235,14 @@ Masuk Ke Web Console Sriwijaya
 3. Lakukan edit pada named server
 
 4. `nano named.conf.local`
+![assets](assets/Screenshot_68.png)
 
 5. `cd it39`
 
 6. `cp pasopati.it39.com`
 
 7. `nano pasopati.it39.com`
+![assets](assets/Screenshot_66.png)
 
 8. `service bind9 restart`
 
@@ -246,6 +252,8 @@ Masuk Ke Web Console Sriwijaya
 Markas pusat meminta dibuatnya domain khusus untuk menaruh informasi persenjataan dan suplai yang tersebar. Informasi dan suplai meme terbaru tersebut mengarah ke Tanjungkulai dan domain yang ingin digunakan adalah **rujapala.xxxx.com** dengan alias **www.rujapala.xxxx.com.**
 
 ### Lakukan Step yang sama dengan No 2 & 3 
+![assets](assets/Screenshot_69.png)
+![assets](assets/Screenshot_64.png)
 
 ## Soal 5 
 Pastikan domain-domain tersebut dapat diakses oleh **seluruh komputer (client)** yang berada di **Nusantara**.
@@ -291,7 +299,14 @@ zone "192.236.2.in-addr.arpa" {
 10. `host -t	PTR 192.236.2.4`
 
 
+# Dokumentasi Menyerah Karena Error ^^
+
+![assets](assets/Screenshot_62.png)
+![assets](assets/Screenshot_63.png)
+![assets](assets/errorbodoh.png)
+
 ## Soal 7
+
 Akhir-akhir ini seringkali terjadi **serangan brainrot** ke DNS Server Utama, sebagai tindakan antisipasi kamu diperintahkan untuk membuat **DNS Slave di Majapahit** untuk semua domain yang sudah dibuat sebelumnya yang mengarah ke **Sriwijaya.**
 
 ## Soal 8
