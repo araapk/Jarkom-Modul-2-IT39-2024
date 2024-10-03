@@ -210,16 +210,16 @@ Masuk Ke Web Console Sriwijaya
 3. Lakukan edit pada named server
 
 4. `nano named.conf.local`
-
 ![assets](assets/Screenshot_68.png)
+
 
 5. `mkdir /etc/bind/it39`
 
 6. `cp ../db.local sudarsana.it39.com`
 
 7. `nano sudarsana.it39.com`
-
 ![assets](assets/Screenshot_65.png)
+
 
 8. `service bind9 restart`
 
@@ -237,12 +237,14 @@ Masuk Ke Web Console Sriwijaya
 4. `nano named.conf.local`
 ![assets](assets/Screenshot_68.png)
 
+
 5. `cd it39`
 
 6. `cp pasopati.it39.com`
 
 7. `nano pasopati.it39.com`
 ![assets](assets/Screenshot_66.png)
+
 
 8. `service bind9 restart`
 
