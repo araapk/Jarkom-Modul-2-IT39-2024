@@ -311,8 +311,108 @@ zone "192.236.2.in-addr.arpa" {
 
 Akhir-akhir ini seringkali terjadi **serangan brainrot** ke DNS Server Utama, sebagai tindakan antisipasi kamu diperintahkan untuk membuat **DNS Slave di Majapahit** untuk semua domain yang sudah dibuat sebelumnya yang mengarah ke **Sriwijaya.**
 
+Pada Sriwijaya
+1. `nano /etc/bind/named.conf.local`
+2. 
+```
+zone "sudarsana.it39.com" {
+		type master;
+		also-notify { 192.236.1.5; }; // IP Majapahit
+		allow-transfer { 192.236.1.5; }; // IP Majapahit
+		file "/etc/bind/it39/sudarsana.it39.com";
+};
+
+zone "pasopati.it39.com" {
+		type master;
+		also-notify { 192.236.1.5; }; // IP Majapahit
+		allow-transfer { 192.236.1.5; }; // IP Majapahit
+		file "/etc/bind/it39/pasopati.it39.com";
+};
+
+zone "rujapala.it39.com" {
+		type master;		
+		also-notify { 192.236.1.5; }; // IP Majapahit
+		allow-transfer { 192.236.1.5; }; // IP Majapahit
+		file "/etc/bind/it39/rujapala.it39.com";
+};
+
+zone "2.236.192.in-addr.arpa" {
+		type master;
+		also-notify { 192.236.1.5; }; // IP Majapahit
+		allow-transfer { 192.236.1.5; }; // IP Majapahit
+		file "/etc/bind/it39/2.236.192.in-addr.arpa";
+};
+```
+3. `service bind9 restart`
+
+Pada Majapahit
+1. 
+```
+apt-get update
+apt-get install bind9 -y
+```
+2. `service bind9 start`
+3. 
+```
+zone "sudarsana.it39.com" {
+		type slave;
+		masters { 192.236.2.4; }; //IP Sriwijaya
+		file "/var/lib/bind/sudarsana.it39.com";
+};
+
+zone "pasopati.it39.com" {
+		type slave;
+		masters { 192.236.2.4; }; //IP Sriwijaya
+		file "/var/lib/bind/pasopati.it39.com";
+};
+
+zone "rujapala.it39.com" {
+		type slave;
+		masters { 192.236.2.4; }; //IP Sriwijaya
+		file "/var/lib/bind/rujapala.it39.com";
+};
+
+zone "2.236.192.in-addr.arpa" {
+		type slave;
+		masters { 192.236.2.4; }; //IP Sriwijaya
+		file "/var/lib/bind/2.236.192.in-addr.arpa";
+};
+```
+4. `service bind9 restart`
+
+Saat Sriwijaya mati dan Majapahit nyala, test semua client
+```
+ping sudarsana.it39.com
+ping rujapala.it39.com
+ping pasopati.it39.com
+```
+
 ## Soal 8
 Kamu juga diperintahkan untuk membuat subdomain khusus melacak kekuatan tersembunyi **di Ohio** dengan subdomain **cakra.sudarsana.xxxx.com** yang mengarah ke Bedahulu.
+
+1. `nano /etc/bind/it39/sudarsana.it39.com`
+2. 
+```
+;
+; BIND data file for local loopback interface
+;
+$TTL    604800
+@       IN      SOA     sudarsana.it39.com. root.sudarsana.it39.com. (
+                              2         ; Serial
+                         604800         ; Refresh
+                          86400         ; Retry
+                        2419200         ; Expire
+                         604800 )       ; Negative Cache TTL
+;
+@       IN      NS      sudarsana.it39.com.
+@       IN      A       192.236.2.6
+@       IN      AAAA    ::1
+www     IN      CNAME   sudarsana.it39.com.
+cakra		IN      A       192.236.2.2
+www.cakra	IN      CNAME   cakra.sudarsana.it39.com.
+```
+3. `service bind9 restart`
+4. Tes semua client menggunakan command `ping cakra.sudarsana.it39.com`
 
 ## Soal 9
 Karena terjadi serangan DDOS oleh shikanoko nokonoko koshitantan (NUN), sehingga sistem komunikasinya terhalang. Untuk melindungi warga, kita diperlukan untuk membuat sistem peringatan dari siren man oleh Frekuensi Freak dan memasukkannya ke subdomain **panah.pasopati.xxxx.com** dalam folder panah dan pastikan dapat diakses secara mudah dengan menambahkan alias **www.panah.pasopati.xxxx.com** dan mendelegasikan subdomain tersebut ke **Majapahit** dengan alamat IP menuju radar di **Kotalingga.**
