@@ -223,7 +223,10 @@ Masuk Ke Web Console Sriwijaya
 
 8. `service bind9 restart`
 
-9. `ping sudarsana.it39.com` 
+9. `ping sudarsana.it39.com`
+
+![Screenshot 2024-10-06 100336](https://github.com/user-attachments/assets/ba8cb3c2-9747-477e-b4c8-8342dc63268c)
+
 
 ## Soal 3
 Para pasukan juga perlu mengetahui mana titik yang akan diserang, sehingga dibutuhkan domain lain yaitu **pasopati.xxxx.com** dengan alias **www.pasopati.xxxx.com** yang mengarah ke **Kotalingga**.
@@ -250,12 +253,18 @@ Masuk Ke Web Console Sriwijaya
 
 9. `ping pasopati.it39.com` 
 
+![Screenshot 2024-10-06 100627](https://github.com/user-attachments/assets/c75da53c-d5b6-4b9e-b8fb-9b96ed30c9e8)
+
+
 ## Soal 4
 Markas pusat meminta dibuatnya domain khusus untuk menaruh informasi persenjataan dan suplai yang tersebar. Informasi dan suplai meme terbaru tersebut mengarah ke Tanjungkulai dan domain yang ingin digunakan adalah **rujapala.xxxx.com** dengan alias **www.rujapala.xxxx.com.**
 
 ### Lakukan Step yang sama dengan No 2 & 3 
 ![assets](assets/Screenshot_69.png)
 ![assets](assets/Screenshot_64.png)
+
+![Screenshot 2024-10-06 100713](https://github.com/user-attachments/assets/c1e07e3b-7b36-410b-97d8-84df624bf6ca)
+
 
 ## Soal 5 
 Pastikan domain-domain tersebut dapat diakses oleh **seluruh komputer (client)** yang berada di **Nusantara**.
@@ -270,6 +279,9 @@ echo nameserver 192.236.2.7 >> /etc/resolv.conf
 ```
 echo nameserver 192.236.1.2 >> /etc/resolv.conf
 ```
+
+![Screenshot 2024-10-06 100907](https://github.com/user-attachments/assets/a40da9f4-60e4-4012-afaa-bf34710315e5)
+
 
 ## Soal 6
 Beberapa daerah memiliki keterbatasan yang menyebabkan hanya dapat mengakses domain secara langsung melalui **alamat IP** domain tersebut. Karena daerah tersebut tidak diketahui secara spesifik, pastikan semua komputer (client) dapat mengakses domain **pasopati.xxxx.com** melalui **alamat IP Kotalingga** (Notes: menggunakan pointer record).
@@ -306,6 +318,9 @@ zone "192.236.2.in-addr.arpa" {
 ![assets](assets/Screenshot_62.png)
 ![assets](assets/Screenshot_63.png)
 ![assets](assets/errorbodoh.png)
+
+![Screenshot 2024-10-06 100957](https://github.com/user-attachments/assets/f6fadb3a-c805-436d-9b6b-4f75b3153aa2)
+
 
 ## Soal 7
 
@@ -387,10 +402,14 @@ ping rujapala.it39.com
 ping pasopati.it39.com
 ```
 
+![Screenshot 2024-10-06 101057](https://github.com/user-attachments/assets/c4ac2793-f86e-45d4-99c8-349b8749c87d)
+![Screenshot 2024-10-06 101147](https://github.com/user-attachments/assets/e73f9728-4159-4ae1-85de-759f3ce65ab7)
+
+
 ## Soal 8
 Kamu juga diperintahkan untuk membuat subdomain khusus melacak kekuatan tersembunyi **di Ohio** dengan subdomain **cakra.sudarsana.xxxx.com** yang mengarah ke Bedahulu.
 
-1. `nano /etc/bind/it39/sudarsana.it39.com`
+1. `nano sriwijaya8.bash`
 2. 
 ```
 ;
@@ -411,18 +430,117 @@ www     IN      CNAME   sudarsana.it39.com.
 cakra		IN      A       192.236.2.2
 www.cakra	IN      CNAME   cakra.sudarsana.it39.com.
 ```
-3. `service bind9 restart`
-4. Tes semua client menggunakan command `ping cakra.sudarsana.it39.com`
+3. `chmod +x sriwijaya8.bash`
+4. `./sriwijaya8.bash`
+4. `service bind9 restart`
+5. Tes semua client menggunakan command `ping cakra.sudarsana.it39.com`
+
+![Screenshot 2024-10-06 101224](https://github.com/user-attachments/assets/32b673ba-71c7-4998-9df5-dc72c3d9c397)
+
 
 ## Soal 9
 Karena terjadi serangan DDOS oleh shikanoko nokonoko koshitantan (NUN), sehingga sistem komunikasinya terhalang. Untuk melindungi warga, kita diperlukan untuk membuat sistem peringatan dari siren man oleh Frekuensi Freak dan memasukkannya ke subdomain **panah.pasopati.xxxx.com** dalam folder panah dan pastikan dapat diakses secara mudah dengan menambahkan alias **www.panah.pasopati.xxxx.com** dan mendelegasikan subdomain tersebut ke **Majapahit** dengan alamat IP menuju radar di **Kotalingga.**
 
+
 ## Soal 10 
 Markas juga meminta catatan kapan saja meme brain rot akan dijatuhkan, maka buatlah subdomain baru di subdomain panah yaitu **log.panah.pasopati.xxxx.com** serta aliasnya **www.log.panah.pasopati.xxxx.com** yang juga mengarah ke **Kotalingga.**
+
+1. `nano majapahit10.bash`
+
+```
+#!/bin/bash
+
+# Tambahkan konfigurasi untuk membuat subdomain log.panah.pasopati.it39.com
+echo '
+;
+; BIND data file for local loopback interface
+;
+$TTL    604800
+@       IN      SOA     panah.pasopati.it39.com. panah.pasopati.it39.com. (
+                        2024050301      ; Serial
+                         604800         ; Refresh
+                          86400         ; Retry
+                        2419200         ; Expire
+                         604800 )       ; Negative Cache TTL
+;
+@       IN      NS      panah.pasopati.it39.com.
+@       IN      A       192.236.2.7     ; IP Kotalingga
+www     IN      CNAME   panah.pasopati.it39.com.
+log     IN      A       192.236.2.7     ; IP Kotalingga
+www.log IN      CNAME   panah.pasopati.it39.com.' > /etc/bind/panah/panah.pasopati.it39.com
+
+service bind9 restart
+```
+3. `chmod +x majapahit10.bash`
+4. `./majapahit10.bash`
+
+Test pada tiap client
+`ping log.panah.pasopati.it39.com`
+
+![Screenshot 2024-10-06 101320](https://github.com/user-attachments/assets/718b9cdb-6a4b-4cf9-a7da-bdd320c5acd3)
+
 
 ## Soal 11
 Setelah pertempuran mereda, warga IT dapat kembali mengakses jaringan luar dan menikmati meme brainrot terbaru, tetapi **hanya** warga 
 **Majapahit** saja yang dapat mengakses jaringan luar secara **langsung**. Buatlah konfigurasi agar warga IT yang berada diluar Majapahit dapat mengakses jaringan luar **melalui** DNS Server **Majapahit.**
+
+Pada Sriwijaya
+1. `nano sriwijaya11.bash`
+2. 
+```
+#!/bin/bash
+
+# Tambahkan konfigurasi untuk DNS forwarder
+echo '
+options {
+        directory "/var/cache/bind";
+
+        forwarders {
+                192.168.122.1; //IP Nusantara
+        };
+        //dnssec-validation auto;
+        allow-query{any;};
+
+        auth-nxdomain no;    # conform to RFC1035
+        listen-on-v6 { any; };
+};' > /etc/bind/named.conf.options
+
+service bind9 restart
+```
+3. `chmod +x sriwijaya11.bash`
+4. `./sriwijaya11.bash`
+
+Pada Majapahit
+1. `nano majapahit11.bash`
+2. 
+```
+#!/bin/bash
+
+# Tambahkan konfigurasi untuk DNS forwarder
+echo '
+options {
+        directory "/var/cache/bind";
+
+        forwarders {
+                192.168.122.1; // IP Nusantara
+        };
+        //dnssec-validation auto;
+        allow-query{any;};
+
+        auth-nxdomain no;    # conform to RFC1035
+        listen-on-v6 { any; };
+};' > /etc/bind/named.conf.options
+
+service bind9 restart
+```
+3. `chmod +x majapahit11.bash`
+4. `./majapahit11.bash`
+
+Test pada tiap client
+`ping google.com`
+
+![Screenshot 2024-10-06 101349](https://github.com/user-attachments/assets/0c827759-21e9-4341-b016-d6f8948fe568)
+
 
 ## Soal 12
 Karena pusat ingin sebuah laman web yang ingin digunakan untuk memantau kondisi kota lainnya maka deploy laman web ini (cek resource yg lb) pada **Kotalingga** menggunakan **apache.**
